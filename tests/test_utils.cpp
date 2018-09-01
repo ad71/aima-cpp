@@ -44,9 +44,17 @@ void test_count() {
     return;
 }
 
+void test_product() {
+    std::vector<long long> vll_A = {9823, 12983, 123, 3847, 2873};
+    long long ll_result = product(vll_A);
+    assert(ll_result == 173373263760957117);
+    return;
+}
+
 int main() {
     test_removeall();
     test_unique();
     test_count();
+    test_product();
     return 0;
 }
