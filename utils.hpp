@@ -26,4 +26,15 @@ std::vector<T> removeall(const T item, const std::vector<T>& seq) {
     return n_v;
 }
 
+// Return a copy of a string with all occurences of `item` removed
+std::string removeall(const char item, const std::string str) {
+    std::string n_s = "";
+    for (auto i : str) {
+        if (i != item) {
+            n_s += i;
+        }
+    }
+    return n_s;
+}
+
 #endif

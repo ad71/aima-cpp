@@ -14,6 +14,11 @@ void test_removeall() {
     std::vector<long> vl_result = removeall(l_B, vl_A);
     std::vector<long> vl_reqd_r = {81276381, 2938749287, 893764189, 293874, 9183749, 9238744, 293874688};
     assert(vl_result == vl_reqd_r);
+    std::string s_A = "acgtcagtcgacgtgactgactgactgtat";
+    char c_B = 'a';
+    std::string s_result = removeall(c_B, s_A);
+    std::string s_reqd_r = "cgtcgtcgcgtgctgctgctgtt";
+    assert(s_result == s_reqd_r);
     return;
 }
 
