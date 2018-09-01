@@ -15,7 +15,7 @@ void print_vector(std::ostream& out, const std::vector<T>& seq) {
     out << '\n';
 }
 
-// Return a copy of a vector with all occurences of `item` removed
+// Return a copy of a vector with all occurences of `item` removed.
 template<typename T>
 std::vector<T> removeall(const T item, const std::vector<T>& seq) {
     std::vector<T> n_v;
@@ -27,7 +27,7 @@ std::vector<T> removeall(const T item, const std::vector<T>& seq) {
     return n_v;
 }
 
-// Return a copy of a string with all occurences of `item` removed
+// Return a copy of a string with all occurences of `item` removed.
 std::string removeall(const char item, const std::string& str) {
     std::string n_s = "";
     for (auto i : str) {
@@ -38,6 +38,7 @@ std::string removeall(const char item, const std::string& str) {
     return n_s;
 }
 
+// Remove duplicate elements from a sequence of elements. Assumes hashable elements.
 template<typename T>
 std::vector<T> unique(std::vector<T>& v) {
     std::set<T> s(std::make_move_iterator(v.begin()), std::make_move_iterator(v.end()));
