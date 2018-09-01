@@ -43,7 +43,7 @@ std::string removeall(const char item, const std::string& str) {
 
 // Remove duplicate elements from a sequence of elements. Assumes hashable elements.
 template<typename T>
-std::vector<T> unique(std::vector<T>& v) {
+std::vector<T> unique(std::vector<T> v) {
     std::set<T> s(std::make_move_iterator(v.begin()), std::make_move_iterator(v.end()));
     std::vector<T> n_v(std::make_move_iterator(s.begin()), std::make_move_iterator(s.end()));
     return n_v;
@@ -51,10 +51,10 @@ std::vector<T> unique(std::vector<T>& v) {
 
 // Count the number of items in sequence that are interpreted as true.
 template<typename T>
-std::size_t count(std::vector<T>& v) {
+std::size_t count(const std::vector<T>& v) {
     std::size_t count_ = 0;
     for (auto i : v) {
-        if (bool(v)) {
+        if (bool(i)) {
             count_++;
         }
     }

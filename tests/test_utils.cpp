@@ -34,8 +34,16 @@ void test_unique() {
     return;
 }
 
+void test_count() {
+    std::vector<int> vi_A = {1, 2, 3, 4, 3, 6, 7, 3, 9, 8, 3, 6, 7, 3, 3, 0, 3};
+    std::size_t l_result = count(vi_A);
+    std::cout << l_result << std::endl;
+    return;
+}
+
 int main() {
     test_removeall();
     test_unique();
+    test_count();
     return 0;
 }
