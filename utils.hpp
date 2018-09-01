@@ -8,6 +8,7 @@
 #include <ostream>
 #include <iostream>
 #include <exception>
+#include <algorithm>
 
 // ----------------------------------------------------------------------------------------
 // Functions on sequences and iterables
@@ -94,6 +95,14 @@ bool is_in(const T& data, const std::vector<T>& v) {
         }
     }
     return false;
+}
+
+// Return the most common data item. If there are ties, return any one of them.
+template<typename T>
+T mode (const std::vector<T>& v) {
+    return std::max_element(v.begin(), v.end(), [&v](T val) {
+        return std::count(v.begin(), v.end(), val);
+    });
 }
 
 #endif
