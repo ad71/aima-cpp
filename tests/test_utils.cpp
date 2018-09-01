@@ -68,6 +68,14 @@ void test_first() {
     return;
 }
 
+void test_is_in() {
+    std::vector<char> vs_A = {'1', 'e', '2'};
+    assert(is_in('e', vs_A));
+    std::vector<int> vi_A = {1, 5, 7, 7, 4};
+    assert(!is_in(2, vi_A));
+    return;
+}
+
 int main() {
     test_removeall();
     test_unique();
