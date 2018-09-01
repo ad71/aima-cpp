@@ -61,4 +61,14 @@ std::size_t count(const std::vector<T>& v) {
     return count_;
 }
 
+// Return the product of the numbers in a vector.
+template<typename T>
+long long product(const std::vector<T>& v) {
+    long long result = 1;
+    for (auto i : v) {
+        result *= i;
+    }
+    return result;
+}
+
 #endif
