@@ -78,6 +78,9 @@ long long product(const std::vector<T>& v) {
 // Return the first element of an iterable or the next element of a generator, or default.
 template<typename T>
 T first(const std::vector<T>& v, const T default_=std::numeric_limits<T>::min(), std::ostream& out=std::cout) {
+    if (v.size() == 0) {
+        return default_;
+    }
     try {
         return *v.begin();
     } catch (std::exception& e) {

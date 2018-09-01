@@ -1,4 +1,5 @@
 #include <vector>
+#include <limits>
 #include <cassert>
 #include <iostream>
 #include "../utils.hpp"
@@ -45,6 +46,9 @@ void test_count() {
 }
 
 void test_product() {
+    std::vector<int> vi_A = {1, 2, 3, 4};
+    int i_result = product(vi_A);
+    assert(i_result == 24);
     std::vector<long long> vll_A = {9823, 12983, 123, 3847, 2873};
     long long ll_result = product(vll_A);
     assert(ll_result == 173373263760957117);
@@ -54,10 +58,13 @@ void test_product() {
 void test_first() {
     std::vector<int> vi_A = {1, 2, 3, 4, 3, 6, 7, 3, 9, 8, 3, 6, 7, 3, 3, 0, 3};
     int i_result = first(vi_A);
-    assert (i_result == 1);
+    assert(i_result == 1);
     std::vector<long> vl_A = {81276381, 9812739, 293874928, 9812739, 893764189, 293874, 9812739, 9183749, 9238744, 9812739, 293874688, 9812739};
     long l_result = first(vl_A);
-    assert (l_result == 81276381);
+    assert(l_result == 81276381);
+    std::vector<long long> vll_A = {};
+    long long ll_result = first(vll_A);
+    assert(ll_result == std::numeric_limits<long long>::min());
     return;
 }
 
