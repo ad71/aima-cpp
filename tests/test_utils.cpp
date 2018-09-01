@@ -22,7 +22,20 @@ void test_removeall() {
     return;
 }
 
+void test_unique() {
+    std::vector<int> vi_A = {1, 2, 3, 4, 3, 6, 7, 3, 9, 8, 3, 6, 7, 3, 3, 0, 3};
+    std::vector<int> vi_result = unique(vi_A);
+    std::vector<int> vi_reqd_r = {0, 1, 2, 3, 4, 6, 7, 8, 9};
+    assert(vi_result == vi_reqd_r);
+    std::vector<long> vl_A = {81276381, 9812739, 2938749287, 9812739, 893764189, 293874, 9812739, 9183749, 9238744, 9812739, 293874688, 9812739};
+    std::vector<long> vl_result = unique(vl_A);
+    std::vector<long> vl_reqd_r = {293874, 9183749, 9238744, 9812739, 81276381, 293874688, 893764189, 2938749287};
+    assert(vl_result == vl_reqd_r);
+    return;
+}
+
 int main() {
     test_removeall();
+    test_unique();
     return 0;
 }

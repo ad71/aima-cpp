@@ -1,6 +1,7 @@
 #ifndef UTILS_HPP_
 #define UTILS_HPP_
 
+#include <set>
 #include <vector>
 #include <string>
 #include <ostream>
@@ -27,7 +28,7 @@ std::vector<T> removeall(const T item, const std::vector<T>& seq) {
 }
 
 // Return a copy of a string with all occurences of `item` removed
-std::string removeall(const char item, const std::string str) {
+std::string removeall(const char item, const std::string& str) {
     std::string n_s = "";
     for (auto i : str) {
         if (i != item) {
@@ -35,6 +36,13 @@ std::string removeall(const char item, const std::string str) {
         }
     }
     return n_s;
+}
+
+template<typename T>
+std::vector<T> unique(std::vector<T>& v) {
+    std::set<T> s(std::make_move_iterator(v.begin()), std::make_move_iterator(v.end()));
+    std::vector<T> n_v(std::make_move_iterator(s.begin()), std::make_move_iterator(s.end()));
+    return n_v;
 }
 
 #endif
