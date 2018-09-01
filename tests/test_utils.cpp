@@ -76,11 +76,20 @@ void test_is_in() {
     return;
 }
 
+void test_mode() {
+    std::vector<int> vi_A = {12, 32, 2, 1, 2, 3, 2, 3, 2, 3, 44, 3, 12, 4, 9, 0, 3, 45, 3};
+    assert(mode(vi_A) == 3);
+    return;
+}
+
 int main() {
     test_removeall();
     test_unique();
     test_count();
     test_product();
     test_first();
+    test_is_in();
+    // TODO: fix mode() function
+    // test_mode();
     return 0;
 }
