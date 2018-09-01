@@ -4,6 +4,7 @@
 #include <set>
 #include <vector>
 #include <string>
+#include <limits>
 #include <ostream>
 #include <iostream>
 #include <exception>
@@ -13,7 +14,7 @@
 
 // Display a vector of type T to the required output stream
 template <typename T>
-void print_vector(const std::vector<T>& seq, std::ostream& out = std::cout) {
+void print_vector(const std::vector<T>& seq, std::ostream& out=std::cout) {
     for (auto i : seq) {
         out << i << " ";
     }
@@ -74,7 +75,7 @@ long long product(const std::vector<T>& v) {
 }
 
 template<typename T>
-T first(const std::vector<T>& v, const T default_ = NULL, std::ostream& out = std::cout) {
+T first(const std::vector<T>& v, const T default_=std::numeric_limits<T>::min(), std::ostream& out=std::cout) {
     try {
         return v[v.begin()];
     } catch (std::exception& e) {
