@@ -77,7 +77,7 @@ long long product(const std::vector<T>& v) {
 template<typename T>
 T first(const std::vector<T>& v, const T default_=std::numeric_limits<T>::min(), std::ostream& out=std::cout) {
     try {
-        return v[v.begin()];
+        return *v.begin();
     } catch (std::exception& e) {
         out << e.what() << std::endl;
     }
