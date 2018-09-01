@@ -1,2 +1,2 @@
-# aima-cpp
-C++ implementation of algorithms from Russell and Norvig's "Artificial Intelligence - A Modern Approach"
+# `aima-cpp`
+Unofficial C++ implementation of algorithms from Russell and Norvig's "Artificial Intelligence - A Modern Approach".
