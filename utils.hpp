@@ -5,13 +5,15 @@
 #include <vector>
 #include <string>
 #include <ostream>
+#include <iostream>
+#include <exception>
 
 // ----------------------------------------------------------------------------------------
 // Functions on sequences and iterables
 
 // Display a vector of type T to the required output stream
-template<typename T>
-void print_vector(std::ostream& out, const std::vector<T>& seq) {
+template <typename T>
+void print_vector(const std::vector<T>& seq, std::ostream& out = std::cout) {
     for (auto i : seq) {
         out << i << " ";
     }
@@ -69,6 +71,16 @@ long long product(const std::vector<T>& v) {
         result *= i;
     }
     return result;
+}
+
+template<typename T>
+T first(const std::vector<T>& v, const T default_ = NULL, std::ostream& out = std::cout) {
+    try {
+        return v[v.begin()];
+    } catch (std::exception& e) {
+        out << e.what() << std::endl;
+    }
+    return default_;
 }
 
 #endif
