@@ -37,7 +37,10 @@ void test_unique() {
 void test_count() {
     std::vector<int> vi_A = {1, 2, 3, 4, 3, 6, 7, 3, 9, 8, 3, 6, 7, 3, 3, 0, 3};
     std::size_t l_result = count(vi_A);
-    std::cout << l_result << std::endl;
+    assert(l_result == 16);
+    std::vector<bool> vb_A = {true, true, false, false, false, true, false, true};
+    l_result = count(vb_A);
+    assert(l_result == 4);
     return;
 }
 
