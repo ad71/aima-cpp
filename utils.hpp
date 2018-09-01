@@ -6,6 +6,9 @@
 #include <string>
 #include <ostream>
 
+// ----------------------------------------------------------------------------------------
+// Functions on sequences and iterables
+
 // Display a vector of type T to the required output stream
 template<typename T>
 void print_vector(std::ostream& out, const std::vector<T>& seq) {
@@ -44,6 +47,18 @@ std::vector<T> unique(std::vector<T>& v) {
     std::set<T> s(std::make_move_iterator(v.begin()), std::make_move_iterator(v.end()));
     std::vector<T> n_v(std::make_move_iterator(s.begin()), std::make_move_iterator(s.end()));
     return n_v;
+}
+
+// Count the number of items in sequence that are interpreted as true.
+template<typename T>
+std::size_t count(std::vector<T>& v) {
+    std::size_t count_ = 0;
+    for (auto i : v) {
+        if (bool(v)) {
+            count_++;
+        }
+    }
+    return count_;
 }
 
 #endif
