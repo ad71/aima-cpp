@@ -74,6 +74,7 @@ long long product(const std::vector<T>& v) {
     return result;
 }
 
+// Return the first element of an iterable or the next element of a generator, or default.
 template<typename T>
 T first(const std::vector<T>& v, const T default_=std::numeric_limits<T>::min(), std::ostream& out=std::cout) {
     try {
@@ -82,6 +83,17 @@ T first(const std::vector<T>& v, const T default_=std::numeric_limits<T>::min(),
         out << e.what() << std::endl;
     }
     return default_;
+}
+
+// Checks if given element is in the vector.
+template<typename T>
+bool is_in(const T& data, const std::vector<T>& v) {
+    for (auto i : v) {
+        if (i == data) {
+            return true;
+        }
+    }
+    return false;
 }
 
 #endif
