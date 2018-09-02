@@ -90,6 +90,6 @@ int main() {
     test_first();
     test_is_in();
     // TODO: fix mode() function
-    // test_mode();
+    test_mode();
     return 0;
 }

@@ -103,9 +103,18 @@ bool is_in(const T& data, const std::vector<T>& v) {
 // Return the most common data item. If there are ties, return any one of them.
 template<typename T>
 T mode (const std::vector<T>& v) {
-    return std::max_element(v.begin(), v.end(), [&v](T val) {
-        return std::count(v.begin(), v.end(), val);
-    });
+    T o_mode = 0;
+    T o_count = 0;
+    for (std::size_t i = 0; i < v.size(); ++i) {
+        T mode = v[i];
+        T count = std::count(v.begin() + i + 1, v.end(), mode);
+
+        if (count > o_count) {
+            o_mode = mode;
+            o_count = count;
+        }
+    }
+    return o_mode;
 }
 
 #endif
