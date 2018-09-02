@@ -117,4 +117,19 @@ T mode (const std::vector<T>& v) {
     return o_mode;
 }
 
+char mode(const std::string& str) {
+    char o_mode = ' ';
+    char o_count = ' ';
+    for (std::size_t i = 0; i < str.length(); ++i) {
+        char mode = str[i];
+        char count = std::count(str.begin() + i + 1, str.end(), mode);
+
+        if (count > o_count) {
+            o_mode = mode;
+            o_count = count;
+        }
+    }
+    return o_mode;
+}
+
 #endif

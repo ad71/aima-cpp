@@ -79,6 +79,8 @@ void test_is_in() {
 void test_mode() {
     std::vector<int> vi_A = {12, 32, 2, 1, 2, 3, 2, 3, 2, 3, 44, 3, 12, 4, 9, 0, 3, 45, 3};
     assert(mode(vi_A) == 3);
+    // std::string s_A = "absndkwoajfkalwpdlsdlfllalsflfdslgflal";
+    // std::cout << mode(s_A) << std::endl;
     return;
 }
 
