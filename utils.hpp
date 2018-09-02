@@ -110,17 +110,33 @@ bool is_in(const T& data, const std::vector<T>& v) {
 }
 
 // Return the most common data item. If there are ties, return any one of them.
-template<typename T>
-T mode (const std::vector<T>& v) {
+// template<typename T>
+// T mode(const std::vector<T>& v) {
+//     T o_mode = 0;
+//     T o_count = 0;
+//     for (std::size_t i = 0; i < v.size(); ++i) {
+//         T mode = v[i];
+//         T count = std::count(v.begin() + i + 1, v.end(), mode);
+
+//         if (count > o_count) {
+//             o_mode = mode;
+//             o_count = count;
+//         }
+//     }
+//     return o_mode;
+// }
+
+template<class Iterator, class T = typename std::iterator_traits<Iterator>::value_type>
+T mode(Iterator first, Iterator last) {
     T o_mode = 0;
     T o_count = 0;
-    for (std::size_t i = 0; i < v.size(); ++i) {
-        T mode = v[i];
-        T count = std::count(v.begin() + i + 1, v.end(), mode);
+    for (auto it = first; it != last; ++it) {
+        T mode_ = *it;
+        T count_ = std::count(first + it + 1, last, mode_);
 
-        if (count > o_count) {
-            o_mode = mode;
-            o_count = count;
+        if (count_ > o_count) {
+            o_mode = mode_;
+            o_count = count_;
         }
     }
     return o_mode;
