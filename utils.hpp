@@ -128,11 +128,16 @@ bool is_in(const T& data, const std::vector<T>& v) {
 
 template<class Iterator, class T = typename std::iterator_traits<Iterator>::value_type>
 T mode(Iterator first, Iterator last) {
-    T o_mode = 0;
-    T o_count = 0;
+    T o_mode = std::numeric_limits<T>::min();
+    std::size_t o_count = 0;
     for (auto it = first; it != last; ++it) {
         T mode_ = *it;
-        T count_ = std::count(first + it + 1, last, mode_);
+        std::size_t count_ = 0;
+        for (auto jt = first; jt != last; ++jt) {
+            if (*jt == mode_) {
+                count_++;
+            }
+        }
 
         if (count_ > o_count) {
             o_mode = mode_;
