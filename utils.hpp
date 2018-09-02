@@ -111,7 +111,7 @@ bool is_in(const T& data, const std::vector<T>& v) {
 
 // Return the most common data item. If there are ties, return any one of them.
 template<class Iterator, class T = typename std::iterator_traits<Iterator>::value_type>
-T mode(Iterator first, Iterator last) {
+T mode(const Iterator& first, const Iterator& last) {
     T o_mode = std::numeric_limits<T>::min();
     std::size_t o_count = 0;
     for (auto it = first; it != last; ++it) {
@@ -129,6 +129,21 @@ T mode(Iterator first, Iterator last) {
         }
     }
     return o_mode;
+}
+
+template<class Iterator, class T = typename std::iterator_traits<Iterator>::value_type>
+std::set<T> powerset(const Iterator& first, const Iterator& last) {
+    std::set<T> pset;
+    pset.emplace();
+    for (auto it = first; it != last; ++it) {
+        std::set<T> rs;
+        for (auto r_ : pset) {
+            r_.insert(*it);
+            rs.insert(r_);
+        }
+        pset.insert(begin(rs), end(rs));
+    }
+    return pset;
 }
 
 #endif
