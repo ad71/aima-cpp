@@ -13,11 +13,20 @@
 // ----------------------------------------------------------------------------------------
 // Functions on sequences and iterables
 
-// Display a vector of type T to the required output stream
+// Display a vector of type T to the required output stream.
 template <typename T>
 void print_vector(const std::vector<T>& seq, std::ostream& out=std::cout) {
     for (auto i : seq) {
         out << i << " ";
+    }
+    out << '\n';
+}
+
+// Display an iterable given the starting and ending iterators, to the required output stream.
+template <class Iterator, class T = typename std::iterator_traits<Iterator>::value_type>
+void print(Iterator first, Iterator last, std::ostream& out=std::cout) {
+    for (auto it = first; it != last; ++it) {
+        out << *it << " ";
     }
     out << '\n';
 }
@@ -100,31 +109,22 @@ bool is_in(const T& data, const std::vector<T>& v) {
     return false;
 }
 
-template<class Iterator, class U = typename std::iterator_traits<Iterator>::value_type>
-U sum(Iterator first, Iterator last) {
-    U sum = U{};
-    for (auto it = first; it != last; ++it) {
-        sum += *it;
-    }
-    return sum;
-}
-
 // Return the most common data item. If there are ties, return any one of them.
-// template<typename T>
-// T mode (const std::vector<T>& v) {
-//     T o_mode = 0;
-//     T o_count = 0;
-//     for (std::size_t i = 0; i < v.size(); ++i) {
-//         T mode = v[i];
-//         T count = std::count(v.begin() + i + 1, v.end(), mode);
+template<typename T>
+T mode (const std::vector<T>& v) {
+    T o_mode = 0;
+    T o_count = 0;
+    for (std::size_t i = 0; i < v.size(); ++i) {
+        T mode = v[i];
+        T count = std::count(v.begin() + i + 1, v.end(), mode);
 
-//         if (count > o_count) {
-//             o_mode = mode;
-//             o_count = count;
-//         }
-//     }
-//     return o_mode;
-// }
+        if (count > o_count) {
+            o_mode = mode;
+            o_count = count;
+        }
+    }
+    return o_mode;
+}
 
 // 
 // char mode(const std::string& str) {
