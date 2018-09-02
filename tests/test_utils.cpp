@@ -84,6 +84,14 @@ void test_mode() {
     return;
 }
 
+// fixed powerset
+// void test_powerset() {
+//     std::set<int> vi_A = {1, 2, 3};
+//     std::set<int> hs_result = powerset(vi_A);
+//     print(hs_result.begin(), hs_result.end());
+//     return;
+// }
+
 int main() {
     test_removeall();
     test_unique();
@@ -91,7 +99,7 @@ int main() {
     test_product();
     test_first();
     test_is_in();
-    // TODO: fix mode() function
     test_mode();
+    // test_powerset();
     return 0;
 }

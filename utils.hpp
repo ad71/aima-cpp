@@ -131,17 +131,18 @@ T mode(const Iterator& first, const Iterator& last) {
     return o_mode;
 }
 
-template<class Iterator, class T = typename std::iterator_traits<Iterator>::value_type>
-std::set<T> powerset(const Iterator& first, const Iterator& last) {
+// Return the set of all subsets of a given iterable.
+template<typename T>
+auto powerset(const T& t) {
     std::set<T> pset;
     pset.emplace();
-    for (auto it = first; it != last; ++it) {
+    for (auto&& e : t) {
         std::set<T> rs;
         for (auto r_ : pset) {
-            r_.insert(*it);
+            r_.insert(e);
             rs.insert(r_);
         }
-        pset.insert(begin(rs), end(rs));
+        pset.insert(rs.begin(), rs.end());
     }
     return pset;
 }
