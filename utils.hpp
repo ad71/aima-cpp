@@ -100,36 +100,48 @@ bool is_in(const T& data, const std::vector<T>& v) {
     return false;
 }
 
+template<class Iterator, class U = typename std::iterator_traits<Iterator>::value_type>
+U sum(Iterator first, Iterator last) {
+    U sum = U{};
+    for (auto it = first; it != last; ++it) {
+        sum += *it;
+    }
+    return sum;
+}
+
 // Return the most common data item. If there are ties, return any one of them.
-template<typename T>
-T mode (const std::vector<T>& v) {
-    T o_mode = 0;
-    T o_count = 0;
-    for (std::size_t i = 0; i < v.size(); ++i) {
-        T mode = v[i];
-        T count = std::count(v.begin() + i + 1, v.end(), mode);
+// template<typename T>
+// T mode (const std::vector<T>& v) {
+//     T o_mode = 0;
+//     T o_count = 0;
+//     for (std::size_t i = 0; i < v.size(); ++i) {
+//         T mode = v[i];
+//         T count = std::count(v.begin() + i + 1, v.end(), mode);
 
-        if (count > o_count) {
-            o_mode = mode;
-            o_count = count;
-        }
-    }
-    return o_mode;
-}
+//         if (count > o_count) {
+//             o_mode = mode;
+//             o_count = count;
+//         }
+//     }
+//     return o_mode;
+// }
 
-char mode(const std::string& str) {
-    char o_mode = ' ';
-    char o_count = ' ';
-    for (std::size_t i = 0; i < str.length(); ++i) {
-        char mode = str[i];
-        char count = std::count(str.begin() + i + 1, str.end(), mode);
+// 
+// char mode(const std::string& str) {
+//     char o_mode = ' ';
+//     char o_count = ' ';
+//     for (std::size_t i = 0; i < str.length(); ++i) {
+//         char mode = str[i];
+//         char count = std::count(str.begin() + i + 1, str.end(), mode);
 
-        if (count > o_count) {
-            o_mode = mode;
-            o_count = count;
-        }
-    }
-    return o_mode;
-}
+//         if (count > o_count) {
+//             o_mode = mode;
+//             o_count = count;
+//         }
+//     }
+//     return o_mode;
+// }
+
+// template<typename T>
 
 #endif
