@@ -2,6 +2,7 @@
 #define UTILS_HPP_
 
 #include <set>
+#include <cmath>
 #include <vector>
 #include <string>
 #include <limits>
@@ -132,17 +133,20 @@ T mode(const Iterator& first, const Iterator& last) {
 }
 
 // Return the set of all subsets of a given iterable.
-template<typename T>
-auto powerset(const T& t) {
-    std::set<T> pset;
-    pset.emplace();
-    for (auto&& e : t) {
-        std::set<T> rs;
-        for (auto r_ : pset) {
-            r_.insert(e);
-            rs.insert(r_);
+template<class Iterator, class T = typename std::iterator_traits<Iterator>::value_type>
+std::vector<std::vector<T>> powerset(const Iterator& first, const Iterator& last) {
+    std::size_t n = last - first;
+    std::size_t N = std::pow(2, n);
+
+    std::vector<std::vector<T>> pset;
+    for (std::size_t i = 0; i < N; ++i) {
+        std::vector<T> r_;
+        for (std::size_t j = 0; j < n; ++j) {
+            if (i & (1 << j)) {
+                r_.push_back(*(first + j));
+            }
         }
-        pset.insert(rs.begin(), rs.end());
+        pset.push_back(r_);
     }
     return pset;
 }
