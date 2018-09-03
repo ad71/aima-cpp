@@ -151,4 +151,7 @@ std::vector<std::vector<T>> powerset(const Iterator& first, const Iterator& last
     return pset;
 }
 
+// ----------------------------------------------------------------------------------------
+// Argmin and Argmax
+
 #endif

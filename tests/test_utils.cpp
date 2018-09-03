@@ -89,6 +89,10 @@ void test_powerset() {
     std::vector<std::vector<int>> vvi_result = powerset(vi_A.begin(), vi_A.end());
     std::vector<std::vector<int>> vvi_reqd_r = {{}, {1}, {2}, {1, 2}, {3}, {1, 3}, {2, 3}, {1, 2, 3}, {4}, {1, 4}, {2, 4}, {1, 2, 4}, {3, 4}, {1, 3, 4}, {2, 3, 4}, {1, 2, 3, 4}};
     assert(vvi_result == vvi_reqd_r);
+    std::string s_A = "abc";
+    std::vector<std::vector<char>> vvc_result = powerset(s_A.begin(), s_A.end());
+    std::vector<std::vector<char>> vvc_reqd_r = {{}, {'a'}, {'b'}, {'a', 'b'}, {'c'}, {'a', 'c'}, {'b', 'c'}, {'a', 'b', 'c'}};
+    assert(vvc_result == vvc_reqd_r);
     return;
 }
 
