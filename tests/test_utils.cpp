@@ -84,13 +84,13 @@ void test_mode() {
     return;
 }
 
-// fixed powerset
-// void test_powerset() {
-//     std::set<int> vi_A = {1, 2, 3};
-//     std::set<int> hs_result = powerset(vi_A);
-//     print(hs_result.begin(), hs_result.end());
-//     return;
-// }
+void test_powerset() {
+    std::vector<int> vi_A = {1, 2, 3, 4};
+    std::vector<std::vector<int>> vvi_result = powerset(vi_A.begin(), vi_A.end());
+    std::vector<std::vector<int>> vvi_reqd_r = {{}, {1}, {2}, {1, 2}, {3}, {1, 3}, {2, 3}, {1, 2, 3}, {4}, {1, 4}, {2, 4}, {1, 2, 4}, {3, 4}, {1, 3, 4}, {2, 3, 4}, {1, 2, 3, 4}};
+    assert(vvi_result == vvi_reqd_r);
+    return;
+}
 
 int main() {
     test_removeall();
@@ -100,6 +100,6 @@ int main() {
     test_first();
     test_is_in();
     test_mode();
-    // test_powerset();
+    test_powerset();
     return 0;
 }
