@@ -1,3 +1,5 @@
+// Provides some utilities widely used by other modules
+
 #ifndef UTILS_HPP_
 #define UTILS_HPP_
 
