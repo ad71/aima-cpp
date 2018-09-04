@@ -138,7 +138,7 @@ T mode(const Iterator& first, const Iterator& last) {
 template<class Iterator, class T = typename std::iterator_traits<Iterator>::value_type>
 std::vector<std::vector<T>> powerset(const Iterator& first, const Iterator& last) {
     std::size_t n = last - first;
-    auto N = std::pow(2, n);
+    std::size_t N = static_cast<std::size_t>(std::pow(2, n));
 
     std::vector<std::vector<T>> pset;
     for (std::size_t i = 0; i < N; ++i) {
