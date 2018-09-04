@@ -124,6 +124,16 @@ void test_argmin() {
     return;
 }
 
+void test_shuffle() {
+    std::vector<int> vi_A = {1, 2, 3, 4};
+    shuffle(vi_A.begin(), vi_A.end());
+    std::vector<int> vi_result{3, 4, 2, 1};
+    assert(vi_A == vi_result);
+    std::vector<long long> vll_A = {187263, 91827391, 2873};
+    shuffle(vll_A.begin(), vll_A.end(), 9123);
+    return;
+}
+
 int main() {
     test_removeall();
     test_unique();
@@ -135,5 +145,6 @@ int main() {
     test_powerset();
     test_argmax();
     test_argmin();
+    test_shuffle();
     return 0;
 }

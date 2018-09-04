@@ -7,6 +7,7 @@
 #include <cmath>
 #include <vector>
 #include <string>
+#include <random>
 #include <limits>
 #include <ostream>
 #include <iostream>
@@ -197,6 +198,12 @@ T argmax(const Iterator &first, const Iterator &last, std::function<bool(T, T)> 
 template<class Iterator, class T = typename std::iterator_traits<Iterator>::value_type>
 T argmin(const Iterator& first, const Iterator& last, std::function<bool(T, T)> cmp = Compare<T>::identity) {
     return *std::min_element(first, last, cmp);
+}
+
+// Randomly shuffle a copy of an iterable
+template<class Iterator, class T = typename std::iterator_traits<Iterator>::value_type>
+void shuffle(const Iterator& first, const Iterator& last, unsigned seed = 0) {
+    std::shuffle(first, last, std::default_random_engine(seed));
 }
 
 #endif
