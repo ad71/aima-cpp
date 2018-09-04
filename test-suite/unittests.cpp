@@ -85,6 +85,16 @@ TEST(VLL_A, FIRST) {
     ASSERT_EQ(ll_result, std::numeric_limits<long long>::min());
 }
 
+TEST(VS_A, IS_IN) {
+    std::vector<char> vs_A = {'1', 'e', '2'};
+    ASSERT_EQ(is_in('e', vs_A), true);
+}
+
+TEST(VI_A, IS_IN) {
+    std::vector<int> vi_A = {1, 5, 7, 7, 4};
+    ASSERT_EQ(is_in(2, vi_A), false);
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
