@@ -96,6 +96,13 @@ void test_powerset() {
     return;
 }
 
+void test_argmax() {
+    std::vector<int> vi_A = {2, 5, 8, 7, 4, 0, -1, 3};
+    int i_result = argmax(vi_A.begin(), vi_A.end());
+    std::cout << i_result << std::endl;
+    return;
+}
+
 int main() {
     test_removeall();
     test_unique();
@@ -105,5 +112,6 @@ int main() {
     test_is_in();
     test_mode();
     test_powerset();
+    test_argmax();
     return 0;
 }

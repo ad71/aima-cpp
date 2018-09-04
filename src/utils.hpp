@@ -160,26 +160,35 @@ std::vector<std::vector<T>> powerset(const Iterator& first, const Iterator& last
 template<typename T>
 class Compare {
 public:
-    inline static bool identity(T i, T j) {
-        return i < j;
-    }
-    inline static bool absolute(T i, T j) {
-        return std::abs(i) < std::abs(j);
-    }
-    inline static bool length(T i, T j) {
-        return i.size() < j.size();
-    }
+    inline static bool identity(T, T);
+    inline static bool absolute(T, T);
+    inline static bool length(T, T);
 private:
     Compare() {};
 };
 
-template<class Iterator, class T = typename std::iterator_traits<Iterator>::value_type>
-T argmax(const Iterator& first, const Iterator& last, std::function<bool(T, T)> cmp = NULL) {
+template<typename T>
+inline bool Compare<T>::identity(T i, T j) {
+    return i < j;
+}
+
+template<typename T>
+inline bool Compare<T>::absolute(T i, T j) {
+    return std::abs(i) < std::abs(j);
+}
+
+template<typename T>
+inline bool Compare<T>::length(T i, T j) {
+    return i.size() < j.size();
+}
+
+template <class Iterator, class T = typename std::iterator_traits<Iterator>::value_type>
+T argmax(const Iterator &first, const Iterator &last, std::function<bool(T, T)> cmp = Compare<T>::identity) {
     return *std::max_element(first, last, cmp);
 }
 
 template<class Iterator, class T = typename std::iterator_traits<Iterator>::value_type>
-T argmin(const Iterator& first, const Iterator& last, std::function<bool(T, T)> cmp = NULL) {
+T argmin(const Iterator& first, const Iterator& last, std::function<bool(T, T)> cmp = Compare<T>::identity) {
     return *std::min_element(first, last, cmp);
 }
 
