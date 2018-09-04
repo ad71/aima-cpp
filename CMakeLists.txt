@@ -5,7 +5,7 @@ include(gtest.cmake)
 
 SET(COVERAGE OFF CACHE BOOL "Coverage")
 
-add_executable(tests unittests.cpp)
+add_executable(tests test-suite/unittests.cpp)
 
 find_package(Threads)
 target_link_libraries(tests gtest ${CMAKE_THREAD_LIBS_INIT})
