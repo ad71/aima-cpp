@@ -105,6 +105,20 @@ TEST(S_A, MODE) {
     ASSERT_EQ(mode(s_A.begin(), s_A.end()), 'l');
 }
 
+TEST(VI_A, POWERSET) {
+    std::vector<int> vi_A = {1, 2, 3, 4};
+    std::vector<std::vector<int>> vvi_result = powerset(vi_A.begin(), vi_A.end());
+    std::vector<std::vector<int>> vvi_reqd_r = {{}, {1}, {2}, {1, 2}, {3}, {1, 3}, {2, 3}, {1, 2, 3}, {4}, {1, 4}, {2, 4}, {1, 2, 4}, {3, 4}, {1, 3, 4}, {2, 3, 4}, {1, 2, 3, 4}};
+    ASSERT_EQ(vvi_result, vvi_reqd_r);
+}
+
+TEST(S_A, POWERSET) {
+    std::string s_A = "abc";
+    std::vector<std::vector<char>> vvc_result = powerset(s_A.begin(), s_A.end());
+    std::vector<std::vector<char>> vvc_reqd_r = {{}, {'a'}, {'b'}, {'a', 'b'}, {'c'}, {'a', 'c'}, {'b', 'c'}, {'a', 'b', 'c'}};
+    ASSERT_EQ(vvc_result, vvc_reqd_r);
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
