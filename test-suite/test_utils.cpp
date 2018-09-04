@@ -2,6 +2,8 @@
 #include <limits>
 #include <cassert>
 #include <iostream>
+#include <functional>
+
 #include "../src/utils.hpp"
 
 void test_removeall() {
@@ -99,7 +101,26 @@ void test_powerset() {
 void test_argmax() {
     std::vector<int> vi_A = {2, 5, 8, 7, 4, 0, -1, 3};
     int i_result = argmax(vi_A.begin(), vi_A.end());
-    std::cout << i_result << std::endl;
+    assert(i_result == 8);
+    std::vector<long> vl_A = {913, -28973, 128, 12987, -13874, 18764, -29378, -23434, -9485, 2348};
+    long l_result = argmax(vl_A.begin(), vl_A.end(), std::function<bool(long, long)>(Compare<long>::absolute));
+    assert(l_result == -29378);
+    std::vector<std::string> vs_A = {"one", "two", "three", "four", "five", "six", "seventeen", "fourteen", "forty"};
+    std::string s_result = argmax(vs_A.begin(), vs_A.end(), std::function<bool(std::string, std::string)>(Compare<std::string>::length));
+    assert(s_result == "seventeen");
+    return;
+}
+
+void test_argmin() {
+    std::vector<int> vi_A = {2, 5, 8, 7, 4, 0, -1, 3};
+    int i_result = argmin(vi_A.begin(), vi_A.end());
+    assert(i_result == -1);
+    std::vector<long> vl_A = {913, -28973, 128, 12987, -13874, 18764, -29378, -23434, -9485, 2348};
+    long l_result = argmin(vl_A.begin(), vl_A.end(), std::function<bool(long, long)>(Compare<long>::absolute));
+    assert(l_result == 128);
+    std::vector<std::string> vs_A = {"one", "two", "three", "four", "five", "six", "seventeen", "fourteen", "forty"};
+    std::string s_result = argmin(vs_A.begin(), vs_A.end(), std::function<bool(std::string, std::string)>(Compare<std::string>::length));
+    assert(s_result == "one");
     return;
 }
 
@@ -113,5 +134,6 @@ int main() {
     test_mode();
     test_powerset();
     test_argmax();
+    test_argmin();
     return 0;
 }

@@ -157,36 +157,43 @@ std::vector<std::vector<T>> powerset(const Iterator& first, const Iterator& last
 // ----------------------------------------------------------------------------------------
 // Argmin and Argmax
 
+// Commonly used custom compare functions
 template<typename T>
 class Compare {
 public:
     inline static bool identity(T, T);
     inline static bool absolute(T, T);
     inline static bool length(T, T);
+
 private:
     Compare() {};
 };
 
+// Identity comparison function
 template<typename T>
 inline bool Compare<T>::identity(T i, T j) {
     return i < j;
 }
 
+// Absolute value comparison function
 template<typename T>
 inline bool Compare<T>::absolute(T i, T j) {
     return std::abs(i) < std::abs(j);
 }
 
+// Length comparison function
 template<typename T>
 inline bool Compare<T>::length(T i, T j) {
     return i.size() < j.size();
 }
 
+// Return the maximum argument in the iterable corresponding to the given compare function
 template <class Iterator, class T = typename std::iterator_traits<Iterator>::value_type>
 T argmax(const Iterator &first, const Iterator &last, std::function<bool(T, T)> cmp = Compare<T>::identity) {
     return *std::max_element(first, last, cmp);
 }
 
+// Return the minimum argument in the iterable corresponding to the given compare function
 template<class Iterator, class T = typename std::iterator_traits<Iterator>::value_type>
 T argmin(const Iterator& first, const Iterator& last, std::function<bool(T, T)> cmp = Compare<T>::identity) {
     return *std::min_element(first, last, cmp);
