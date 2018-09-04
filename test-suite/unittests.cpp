@@ -57,7 +57,7 @@ TEST(VB_A, COUNT) {
 
 TEST(VI_A, PRODUCT) {
     std::vector<int> vi_A = {1, 2, 3, 4};
-    int i_result = product(vi_A);
+    long long i_result = product(vi_A);
     ASSERT_EQ(i_result, 24);
 }
 
