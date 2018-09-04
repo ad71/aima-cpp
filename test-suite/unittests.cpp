@@ -67,6 +67,24 @@ TEST(VLL_A, PRODUCT) {
     ASSERT_EQ(ll_result, 173373263760957117);
 }
 
+TEST(VI_A, FIRST) {
+    std::vector<int> vi_A = {1, 2, 3, 4, 3, 6, 7, 3, 9, 8, 3, 6, 7, 3, 3, 0, 3};
+    int i_result = first(vi_A);
+    ASSERT_EQ(i_result, 1);
+}
+
+TEST(VL_A, FIRST) {
+    std::vector<long> vl_A = {81276381, 9812739, 293874928, 9812739, 893764189, 293874, 9812739, 9183749, 9238744, 9812739, 293874688, 9812739};
+    long l_result = first(vl_A);
+    ASSERT_EQ(l_result, 81276381);
+}
+
+TEST(VLL_A, FIRST) {
+    std::vector<long long> vll_A = {};
+    long long ll_result = first(vll_A);
+    ASSERT_EQ(ll_result, std::numeric_limits<long long>::min());
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
