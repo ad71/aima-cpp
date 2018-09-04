@@ -12,6 +12,7 @@
 #include <iostream>
 #include <exception>
 #include <algorithm>
+#include <functional>
 
 // ----------------------------------------------------------------------------------------
 // Functions on sequences and iterables
@@ -155,5 +156,31 @@ std::vector<std::vector<T>> powerset(const Iterator& first, const Iterator& last
 
 // ----------------------------------------------------------------------------------------
 // Argmin and Argmax
+
+template<typename T>
+class Compare {
+public:
+    inline static bool identity(T i, T j) {
+        return i < j;
+    }
+    inline static bool absolute(T i, T j) {
+        return std::abs(i) < std::abs(j);
+    }
+    inline static bool length(T i, T j) {
+        return i.size() < j.size();
+    }
+private:
+    Compare() {};
+};
+
+template<class Iterator, class T = typename std::iterator_traits<Iterator>::value_type>
+T argmax(const Iterator& first, const Iterator& last, std::function<bool(T, T)> cmp = NULL) {
+    return *std::max_element(first, last, cmp);
+}
+
+template<class Iterator, class T = typename std::iterator_traits<Iterator>::value_type>
+T argmin(const Iterator& first, const Iterator& last, std::function<bool(T, T)> cmp = NULL) {
+    return *std::min_element(first, last, cmp);
+}
 
 #endif
