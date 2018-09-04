@@ -3,6 +3,8 @@
 #include <vector>
 #include <limits>
 #include <iostream>
+#include <functional>
+
 #include "../src/utils.hpp"
 
 TEST(REMOVEALL, VI_A) {
@@ -117,6 +119,42 @@ TEST(POWERSET, S_A) {
     std::vector<std::vector<char>> vvc_result = powerset(s_A.begin(), s_A.end());
     std::vector<std::vector<char>> vvc_reqd_r = {{}, {'a'}, {'b'}, {'a', 'b'}, {'c'}, {'a', 'c'}, {'b', 'c'}, {'a', 'b', 'c'}};
     ASSERT_EQ(vvc_result, vvc_reqd_r);
+}
+
+TEST(ARGMAX, VI_A) {
+    std::vector<int> vi_A = {2, 5, 8, 7, 4, 0, -1, 3};
+    int i_result = argmax(vi_A.begin(), vi_A.end());
+    ASSERT_EQ(i_result, 8);
+}
+
+TEST(ARGMAX, VL_A) {
+    std::vector<long> vl_A = {913, -28973, 128, 12987, -13874, 18764, -29378, -23434, -9485, 2348};
+    long l_result = argmax(vl_A.begin(), vl_A.end(), std::function<bool(long, long)>(Compare<long>::absolute));
+    ASSERT_EQ(l_result, -29378);
+}
+
+TEST(ARGMAX, VS_A) {
+    std::vector<std::string> vs_A = {"one", "two", "three", "four", "five", "six", "seventeen", "fourteen", "forty"};
+    std::string s_result = argmax(vs_A.begin(), vs_A.end(), std::function<bool(std::string, std::string)>(Compare<std::string>::length));
+    ASSERT_EQ(s_result, "seventeen");
+}
+
+TEST(ARGMIN, VI_A) {
+    std::vector<int> vi_A = {2, 5, 8, 7, 4, 0, -1, 3};
+    int i_result = argmin(vi_A.begin(), vi_A.end());
+    ASSERT_EQ(i_result, -1);
+}
+
+TEST(ARGMIN, VL_A) {
+    std::vector<long> vl_A = {913, -28973, 128, 12987, -13874, 18764, -29378, -23434, -9485, 2348};
+    long l_result = argmin(vl_A.begin(), vl_A.end(), std::function<bool(long, long)>(Compare<long>::absolute));
+    ASSERT_EQ(l_result, 128);
+}
+
+TEST(ARGMIN, VS_A) {
+    std::vector<std::string> vs_A = {"one", "two", "three", "four", "five", "six", "seventeen", "fourteen", "forty"};
+    std::string s_result = argmin(vs_A.begin(), vs_A.end(), std::function<bool(std::string, std::string)>(Compare<std::string>::length));
+    ASSERT_EQ(s_result, "one");
 }
 
 int main(int argc, char **argv) {
