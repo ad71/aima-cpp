@@ -95,6 +95,16 @@ TEST(VI_A, IS_IN) {
     ASSERT_EQ(is_in(2, vi_A), false);
 }
 
+TEST(VI_A, MODE) {
+    std::vector<int> vi_A = {12, 32, 2, 1, 2, 3, 2, 3, 2, 3, 44, 3, 12, 4, 9, 0, 3, 45, 3};
+    ASSERT_EQ(mode(vi_A.begin(), vi_A.end()), 3);
+}
+
+TEST(S_A, MODE) {
+    std::string s_A = "absndkwoajfkalwpdlsdlfllalsflfdslgflal";
+    ASSERT_EQ(mode(s_A.begin(), s_A.end()), 'l');
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
