@@ -157,26 +157,6 @@ TEST(ARGMIN, VS_A) {
     ASSERT_EQ(s_result, "one");
 }
 
-TEST(SHUFFLE, VI_A) {
-    std::vector<int> vi_A = {1, 2, 3, 4};
-    shuffle(vi_A.begin(), vi_A.end());
-    std::vector<int> vi_result{3, 4, 2, 1};
-    EXPECT_EQ(vi_A, vi_result);
-}
-
-TEST(SHUFFLE, VLL_A) {
-    std::vector<long long> vll_A = {187263, 91827391, 2873};
-    shuffle(vll_A.begin(), vll_A.end(), 9123U);
-    std::vector<long long> vll_result{2873, 187263, 91827391};
-    EXPECT_EQ(vll_A, vll_result);
-}
-
-TEST(SHUFFLE, S_A) {
-    std::string s_A = "iawhud";
-    shuffle(s_A.begin(), s_A.end(), 42U);
-    EXPECT_EQ(s_A, "awhudi");
-}
-
 TEST(ARGMAX_RANDOM_TIE, VI_A) {
     std::vector<int> vi_A = {2, 5, 8, 7, 4, 0, -1, 3};
     int i_result = argmax_random_tie(vi_A.begin(), vi_A.end());
