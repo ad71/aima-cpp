@@ -177,6 +177,24 @@ TEST(SHUFFLE, S_A) {
     EXPECT_EQ(s_A, "awhudi");
 }
 
+TEST(ARGMAX_RANDOM_TIE, VI_A) {
+    std::vector<int> vi_A = {2, 5, 8, 7, 4, 0, -1, 3};
+    int i_result = argmax_random_tie(vi_A.begin(), vi_A.end());
+    EXPECT_EQ(i_result, 8);
+}
+
+TEST(ARGMAX_RANDOM_TIE, VL_A) {
+    std::vector<long> vl_A = {913, -28973, 128, 12987, -13874, 18764, -29378, -23434, -9485, 2348};
+    long l_result = argmax_random_tie(vl_A.begin(), vl_A.end(), std::function<bool(long, long)>(Compare<long>::absolute));
+    EXPECT_EQ(l_result, -29378);
+}
+
+TEST(ARGMAX_RANDOM_TIE, VS_A) {
+    std::vector<std::string> vs_A = {"one", "two", "three", "four", "five", "six", "sixteen", "fifteen", "forty"};
+    std::string s_result = argmax_random_tie(vs_A.begin(), vs_A.end(), std::function<bool(std::string, std::string)>(Compare<std::string>::length));
+    EXPECT_EQ(s_result, "fifteen");
+}
+
 int main(int argc, char **argv) {
     ::testing::InitGoogleTest(&argc, argv);
     return RUN_ALL_TESTS();
