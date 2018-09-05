@@ -130,7 +130,12 @@ void test_shuffle() {
     std::vector<int> vi_result{3, 4, 2, 1};
     assert(vi_A == vi_result);
     std::vector<long long> vll_A = {187263, 91827391, 2873};
-    shuffle(vll_A.begin(), vll_A.end(), 9123);
+    shuffle(vll_A.begin(), vll_A.end(), 9123U);
+    std::vector<long long> vll_result{2873, 187263, 91827391};
+    assert(vll_A == vll_result);
+    std::string s_A = "iawhud";
+    shuffle(s_A.begin(), s_A.end(), 42U);
+    assert(s_A == "awhudi");
     return;
 }
 
