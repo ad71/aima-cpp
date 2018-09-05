@@ -9,6 +9,7 @@
 #include <string>
 #include <random>
 #include <limits>
+#include <chrono>
 #include <ostream>
 #include <iostream>
 #include <exception>
@@ -158,7 +159,7 @@ std::vector<std::vector<T>> powerset(const Iterator& first, const Iterator& last
 // ----------------------------------------------------------------------------------------
 // Argmin and Argmax
 
-// Commonly used custom compare functions
+// Commonly used custom compare functions.
 template<typename T>
 class Compare {
 public:
@@ -170,40 +171,60 @@ private:
     Compare() {};
 };
 
-// Identity comparison function
+// Identity comparison function.
 template<typename T>
 inline bool Compare<T>::identity(T i, T j) {
     return i < j;
 }
 
-// Absolute value comparison function
+// Absolute value comparison function.
 template<typename T>
 inline bool Compare<T>::absolute(T i, T j) {
     return std::abs(i) < std::abs(j);
 }
 
-// Length comparison function
+// Length comparison function.
 template<typename T>
 inline bool Compare<T>::length(T i, T j) {
     return i.size() < j.size();
 }
 
-// Return the maximum argument in the iterable corresponding to the given compare function
+// Return the maximum argument in the iterable corresponding to the given compare function.
 template <class Iterator, class T = typename std::iterator_traits<Iterator>::value_type>
 T argmax(const Iterator &first, const Iterator &last, std::function<bool(T, T)> cmp = Compare<T>::identity) {
     return *std::max_element(first, last, cmp);
 }
 
-// Return the minimum argument in the iterable corresponding to the given compare function
+// Return the minimum argument in the iterable corresponding to the given compare function.
 template<class Iterator, class T = typename std::iterator_traits<Iterator>::value_type>
 T argmin(const Iterator& first, const Iterator& last, std::function<bool(T, T)> cmp = Compare<T>::identity) {
     return *std::min_element(first, last, cmp);
 }
 
-// Randomly shuffle a copy of an iterable
+// Randomly shuffle a copy of an iterable.
 template<class Iterator, class T = typename std::iterator_traits<Iterator>::value_type>
 void shuffle(const Iterator& first, const Iterator& last, unsigned seed = 0) {
     std::shuffle(first, last, std::default_random_engine(seed));
+}
+
+// Return a maximum of a given sequence. Break ties at random.
+template<class Iterator, class T = typename std::iterator_traits<Iterator>::value_type>
+T argmax_random_tie(const Iterator& first, const Iterator& last, std::function<bool(T, T)> cmp = Compare<T>::identity, bool random_seed = false, unsigned seed = 0) {
+    if (random_seed) {
+        seed = std::chrono::system_clock::now().time_since_epoch().count();
+    }
+    shuffle(first, last, seed);
+    argmax(first, last, cmp);
+}
+
+// Return a minimum of a given sequence. Break ties at random.
+template<class Iterator, class T = typename std::iterator_traits<Iterator>::value_type>
+T argmin_random_tie(const Iterator& first, const Iterator& last, std::function<bool(T, T)> cmp = Compare<T>::identity, bool random_seed = false, unsigned seed = 0) {
+    if (random_seed) {
+        seed = std::chrono::system_clock::now().time_since_epoch().count();
+    }
+    shuffle(first, last, seed);
+    argmin(first, last, cmp);
 }
 
 #endif
