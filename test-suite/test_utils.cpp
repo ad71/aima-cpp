@@ -142,14 +142,13 @@ void test_shuffle() {
 void test_argmax_random_tie() {
     std::vector<int> vi_A = {2, 5, 8, 7, 4, 0, -1, 3};
     int i_result = argmax_random_tie(vi_A.begin(), vi_A.end());
-    assert(i_result == 0);
+    assert(i_result == 8);
     std::vector<long> vl_A = {913, -28973, 128, 12987, -13874, 18764, -29378, -23434, -9485, 2348};
     long l_result = argmax_random_tie(vl_A.begin(), vl_A.end(), std::function<bool(long, long)>(Compare<long>::absolute));
-    std::cout << l_result << std::endl;
     assert(l_result == -29378);
     std::vector<std::string> vs_A = {"one", "two", "three", "four", "five", "six", "sixteen", "fifteen", "forty"};
     std::string s_result = argmax_random_tie(vs_A.begin(), vs_A.end(), std::function<bool(std::string, std::string)>(Compare<std::string>::length));
-    assert(s_result == "sixteen");
+    assert(s_result == "fifteen");
     return;
 }
 

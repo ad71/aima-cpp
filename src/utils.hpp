@@ -207,6 +207,15 @@ void shuffle(const Iterator& first, const Iterator& last, unsigned seed = 0) {
     std::shuffle(first, last, std::default_random_engine(seed));
 }
 
+// template<typename T>
+// T argmax_random_tie(const std::vector<T>& v, std::function<bool(T, T)> cmp = Compare<T>::identity, bool random_seed = false, unsigned seed = 0) {
+//     if (random_seed) {
+//         seed = std::chrono::system_clock::now().time_since_epoch().count();
+//     }
+//     shuffle(v.begin(), v.end());
+//     argmax
+// }
+
 // Return a maximum of a given sequence. Break ties at random.
 template<class Iterator, class T = typename std::iterator_traits<Iterator>::value_type>
 T argmax_random_tie(const Iterator& first, const Iterator& last, std::function<bool(T, T)> cmp = Compare<T>::identity, bool random_seed = false, unsigned seed = 0) {
@@ -214,7 +223,7 @@ T argmax_random_tie(const Iterator& first, const Iterator& last, std::function<b
         seed = std::chrono::system_clock::now().time_since_epoch().count();
     }
     shuffle(first, last, seed);
-    argmax(first, last, cmp);
+    return argmax(first, last, cmp);
 }
 
 // Return a minimum of a given sequence. Break ties at random.
@@ -224,7 +233,7 @@ T argmin_random_tie(const Iterator& first, const Iterator& last, std::function<b
         seed = std::chrono::system_clock::now().time_since_epoch().count();
     }
     shuffle(first, last, seed);
-    argmin(first, last, cmp);
+    return argmin(first, last, cmp);
 }
 
 #endif
