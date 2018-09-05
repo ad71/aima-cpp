@@ -211,7 +211,7 @@ void shuffle(const Iterator& first, const Iterator& last, unsigned seed = 0) {
 template<class Iterator, class T = typename std::iterator_traits<Iterator>::value_type>
 T argmax_random_tie(const Iterator& first, const Iterator& last, std::function<bool(T, T)> cmp = Compare<T>::identity, bool random_seed = false, unsigned seed = 0) {
     if (random_seed) {
-        seed = std::chrono::system_clock::now().time_since_epoch().count();
+        seed = static_cast<unsigned int>(std::chrono::system_clock::now().time_since_epoch().count());
     }
     shuffle(first, last, seed);
     return argmax(first, last, cmp);
@@ -221,7 +221,7 @@ T argmax_random_tie(const Iterator& first, const Iterator& last, std::function<b
 template<class Iterator, class T = typename std::iterator_traits<Iterator>::value_type>
 T argmin_random_tie(const Iterator& first, const Iterator& last, std::function<bool(T, T)> cmp = Compare<T>::identity, bool random_seed = false, unsigned seed = 0) {
     if (random_seed) {
-        seed = std::chrono::system_clock::now().time_since_epoch().count();
+        seed = static_cast<unsigned int>(std::chrono::system_clock::now().time_since_epoch().count());
     }
     shuffle(first, last, seed);
     return argmin(first, last, cmp);
