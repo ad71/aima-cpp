@@ -152,6 +152,19 @@ void test_argmax_random_tie() {
     return;
 }
 
+void test_argmin_random_tie() {
+    std::vector<int> vi_A = {2, 5, 8, 7, 4, 0, -1, 3};
+    int i_result = argmin_random_tie(vi_A.begin(), vi_A.end());
+    assert(i_result == -1);
+    std::vector<long> vl_A = {913, -28973, 128, 12987, -13874, 18764, -29378, -23434, -9485, 2348};
+    long l_result = argmin_random_tie(vl_A.begin(), vl_A.end(), std::function<bool(long, long)>(Compare<long>::absolute));
+    assert(l_result == 128);
+    std::vector<std::string> vs_A = {"one", "two", "three", "four", "five", "six", "seventeen", "fourteen", "forty"};
+    std::string s_result = argmin_random_tie(vs_A.begin(), vs_A.end(), std::function<bool(std::string, std::string)>(Compare<std::string>::length), false, 41);
+    assert(s_result == "two");
+    return;
+}
+
 int main() {
     test_removeall();
     test_unique();
@@ -165,5 +178,6 @@ int main() {
     test_argmin();
     test_shuffle();
     test_argmax_random_tie();
+    test_argmin_random_tie();
     return 0;
 }
