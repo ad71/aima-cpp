@@ -18,6 +18,8 @@ T infinity(T x) {
     return std::numeric_limits<T>::max();
 }
 
+// ----------------------------------------------------------------------------------------
+
 // The abstract class for a formal problem. You should subclass this and implement the
 // methods actions and result, and possibly the constructor, goal_test and path_cost.
 // Then you will create instances of your subclass and solve them with
@@ -85,5 +87,17 @@ V Problem<T, U, V>::path_cost(const V& c, const std::vector<T>& state1, const U&
     // path cost defaults to one more than the last cost
     return c + 1;
 }
+
+// ----------------------------------------------------------------------------------------
+
+template<typename T, typename U, typename V>
+class Node {
+public:
+    Node(const std::vector<T>& state, const Node<T, U, V>& parent=NULL, const U& action=NULL, const V& path_cost=0) : state_(state), parent_(parent), action_(action), path_cost_(path_cost), depth_(0) {
+        if (parent != NULL) {
+            this.depth_ = parent.depth_ + 1L;
+        }
+    }
+};
 
 #endif
