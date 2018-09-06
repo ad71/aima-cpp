@@ -58,7 +58,6 @@ public:
     // The default method costs 1 for every step in the path.
     V path_cost(const V& c, const std::vector<T>& state1, const U& action, const std::vector<T>& state2);
 
-protected:
     std::vector<T> initial_;    // inheritable vector of type T defining the initial state
     std::vector<T> goal_;       // inheritable vector of type T defining the required goal state
 };
@@ -90,14 +89,29 @@ V Problem<T, U, V>::path_cost(const V& c, const std::vector<T>& state1, const U&
 
 // ----------------------------------------------------------------------------------------
 
-template<typename T, typename U, typename V>
-class Node {
-public:
-    Node(const std::vector<T>& state, const Node<T, U, V>& parent=NULL, const U& action=NULL, const V& path_cost=0) : state_(state), parent_(parent), action_(action), path_cost_(path_cost), depth_(0) {
-        if (parent != NULL) {
-            this.depth_ = parent.depth_ + 1L;
-        }
-    }
-};
+// template<typename T, typename U, typename V>
+// class Node {
+// public:
+//     Node(const std::vector<T>& state, const Node<T, U, V>& parent=NULL, const U& action=NULL, const V& path_cost=0) : state_(state), parent_(parent), action_(action), path_cost_(path_cost), depth_(0) {
+//         if (parent != NULL) {
+//             this.depth_ = parent.depth_ + 1L;
+//         }
+//     }
+
+//     Node child_node(Problem<T, U, V>& problem, const U& action);
+
+//     std::vector<T> state_;
+//     Node<T, U, V> parent_;
+//     U action_;
+//     V path_cost_;
+//     long depth_;
+// };
+
+// template<typename T, typename U, typename V>
+// Node Node<T, U, V>::child_node(Problem<T, U, V>& problem, const &U action) {
+//     std::vector<T> next_state = problem.result(this.state_, action);
+//     Node<T, U, V> next_node(next_state, this, action, problem.path_cost(this.path_cost_, this.state_, action, next_state));
+//     return next_node;
+// }
 
 #endif
